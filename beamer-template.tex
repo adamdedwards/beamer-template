@@ -1,13 +1,24 @@
+\usepackage[utf8]{inputenc}
 \usetheme{default}
 \usecolortheme{default}
-
 %\useoutertheme{smoothbars}
 \useinnertheme{rounded}
+\usefonttheme{serif}
 
-\setbeamertemplate{footline}{~\quad~\insertshorttitle~|~\insertshortauthor\hfill\insertsectionnumber.\insertsubsectionnumber~\insertsection\hfill\insertdate~\quad~
+\usepackage[T1]{fontenc}
+\usepackage[osf,sc]{mathpazo}
+\usepackage[default]{sourcesanspro}
+\usepackage[scaled=0.85]{beramono}
+
+\setbeameroption{show notes}
+\setbeamertemplate{note page}[plain]
+
+%%%%%%%%%%%%%%% CREATE FRAME COUNTER IN FOOTER %%%%%%%%%%%%%%%
+
+\setbeamertemplate{footline}{~\quad~\raisebox{0.25cm}{\insertshorttitle~|~\insertshortauthor}\hfill\raisebox{0.25cm}{\insertsectionnumber.\insertsubsectionnumber~\insertsection}\hfill\raisebox{0.25cm}{\insertdate}~
 \begin{tikzpicture}
 \draw node {\insertframenumber/\inserttotalframenumber};
-\draw [black,very thick,domain=0:360] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
+\draw [white,very thick,domain=0:360] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
 \draw [MyTheme,very thick,domain=0:(360*\insertframenumber)/(\inserttotalframenumber))] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
 \end{tikzpicture}~\quad\quad\vspace{0.3cm}
 }
@@ -15,20 +26,25 @@
 \setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
 \setbeamertemplate{subsection in toc}{\quad\inserttocsectionnumber.\inserttocsubsectionnumber~\inserttocsubsection \\}
 
-\usepackage[T1]{fontenc}
-\usepackage[default]{sourcesanspro}
-\usepackage[utf8x]{inputenc}
+%%%%%%%%%%%%%%% GRAPHICS %%%%%%%%%%%%%%%
 
-\usepackage{graphicx}
 \graphicspath{{../images/}}
 
 \usepackage{xcolor,colortbl}
+\usepackage{caption}
+
+%%%%%%%%%%%%%%% SET FONT AND STYLES FOR BEAMER OBJECTS %%%%%%%%%%%%%%%
 
 \setbeamerfont{title}{series={\huge}}
 \setbeamerfont{frametitle}{series={\bfseries}}
 \setbeamerfont{block title}{series={\normalsize\bfseries}}
 \setbeamertemplate{frametitle}{\begin{centering}\smallskip\insertframetitle\par\smallskip\end{centering}}
 \setbeamertemplate{itemize items}{\tikz\node[draw=MyTheme, circle, very thick,fill=MyThemeLight,inner sep=0.08cm] {};}{}
+
+\setbeamerfont{normal text}{series={\bfseries},family=\mdseries}
+\AtBeginDocument{\usebeamerfont{normal text}}
+
+
 
 \usepackage{pgf,tikz}
 \usetikzlibrary{shapes.callouts}
@@ -40,37 +56,35 @@
   label/.style   = { text width=2cm }
 }
 
-%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{TuscanRed}    {HTML}{71283F}
-\definecolor{DarkFern}     {HTML}{407428}
-\definecolor{OceanBlue}    {HTML}{293F70}
-\definecolor{DarkCharcoal} {HTML}{4D4944}
+%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%
+\definecolor{themeblue}    {HTML}{4666A7}
+\definecolor{themealert}   {HTML}{A44B5B}
+\definecolor{textcolor}    {HTML}{333333}
 
-\colorlet{MyTheme}{DarkFern}
-%\colorlet{MyTheme}{TuscanRed}
-%\colorlet{MyTheme}{OceanBlue}
+\colorlet{MyTheme}{themeblue}
 \colorlet{MyThemeLight}{MyTheme!30!white}
+\colorlet{AlertColor}{themealert}
 
-\colorlet{Charcoal}{DarkCharcoal!85!white}
-\colorlet{LightCharcoal}{Charcoal!50!white}
-\colorlet{AlertColor}{MyTheme}
-
-\setbeamercolor{title}          {fg=black}
-\setbeamercolor{frametitle}     {fg=black}
-\setbeamercolor{normal text}    {fg=black}
-\setbeamercolor{block title}    {fg=black,bg=MyTheme!70!white}
-\setbeamercolor{block body}     {fg=black,bg=MyThemeLight}
+\setbeamercolor{title}          {fg=textcolor}
+\setbeamercolor{frametitle}     {fg=textcolor}
+\setbeamercolor{normal text}    {fg=textcolor}
+\setbeamercolor{block title}    {fg=textcolor,bg=MyTheme!70!white}
+\setbeamercolor{block body}     {fg=textcolor,bg=MyTheme!30!white}
 \setbeamercolor{structure}      {fg=MyTheme}
 \setbeamercolor{alerted text}   {fg=AlertColor}
-\setbeamercolor{itemize item}   {fg=Charcoal}
+\setbeamercolor{itemize item}   {fg=textcolor,bg=MyTheme!30!white}
 \setbeamercolor{enumerate item} {fg=MyTheme}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamercolor{block title alerted}{fg=textcolor,bg=AlertColor!70!white}
+\setbeamercolor{block body alerted}{fg=textcolor,bg=AlertColor!30!white}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Quote Slide Environment
+\newcommand{\vreflect}[1]{\scalebox{1}[-1]{\rotatebox[origin=c]{180}{#1}}}
 
-\newenvironment{quoteslide}[1][\unskip]{
-  \newcommand{\quotetext}[1]{\node[notice={(1,-0.5)}, text width=6.5cm] at (3.5,0){##1}; }
-  \begin{tikzpicture}[overlay,remember picture]
-  }
-{\node[] at (10,-1.5) {\includegraphics[width=3cm]{#1}};
-\end{tikzpicture}}
+
+\AtBeginSection[]
+{
+  \begin{frame}[plain]
+    \frametitle{Outline for Section \thesection}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
