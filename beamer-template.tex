@@ -1,0 +1,76 @@
+\usetheme{default}
+\usecolortheme{default}
+
+%\useoutertheme{smoothbars}
+\useinnertheme{rounded}
+
+\setbeamertemplate{footline}{~\quad~\insertshorttitle~|~\insertshortauthor\hfill\insertsectionnumber.\insertsubsectionnumber~\insertsection\hfill\insertdate~\quad~
+\begin{tikzpicture}
+\draw node {\insertframenumber/\inserttotalframenumber};
+\draw [black,very thick,domain=0:360] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
+\draw [MyTheme,very thick,domain=0:(360*\insertframenumber)/(\inserttotalframenumber))] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
+\end{tikzpicture}~\quad\quad\vspace{0.3cm}
+}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{subsection in toc}{\quad\inserttocsectionnumber.\inserttocsubsectionnumber~\inserttocsubsection \\}
+
+\usepackage[T1]{fontenc}
+\usepackage[default]{sourcesanspro}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{graphicx}
+\graphicspath{{../images/}}
+
+\usepackage{xcolor,colortbl}
+
+\setbeamerfont{title}{series={\huge}}
+\setbeamerfont{frametitle}{series={\bfseries}}
+\setbeamerfont{block title}{series={\normalsize\bfseries}}
+\setbeamertemplate{frametitle}{\begin{centering}\smallskip\insertframetitle\par\smallskip\end{centering}}
+\setbeamertemplate{itemize items}{\tikz\node[draw=MyTheme, circle, very thick,fill=MyThemeLight,inner sep=0.08cm] {};}{}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes.callouts}
+
+\tikzset{
+  level/.style   = { ultra thick, blue },
+  connect/.style = { dashed, red },
+  notice/.style  = { ultra thick, draw=MyTheme, rectangle callout, rounded corners, inner sep=1em,callout relative pointer={#1},fill=MyThemeLight },
+  label/.style   = { text width=2cm }
+}
+
+%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{TuscanRed}    {HTML}{71283F}
+\definecolor{DarkFern}     {HTML}{407428}
+\definecolor{OceanBlue}    {HTML}{293F70}
+\definecolor{DarkCharcoal} {HTML}{4D4944}
+
+\colorlet{MyTheme}{DarkFern}
+%\colorlet{MyTheme}{TuscanRed}
+%\colorlet{MyTheme}{OceanBlue}
+\colorlet{MyThemeLight}{MyTheme!30!white}
+
+\colorlet{Charcoal}{DarkCharcoal!85!white}
+\colorlet{LightCharcoal}{Charcoal!50!white}
+\colorlet{AlertColor}{MyTheme}
+
+\setbeamercolor{title}          {fg=black}
+\setbeamercolor{frametitle}     {fg=black}
+\setbeamercolor{normal text}    {fg=black}
+\setbeamercolor{block title}    {fg=black,bg=MyTheme!70!white}
+\setbeamercolor{block body}     {fg=black,bg=MyThemeLight}
+\setbeamercolor{structure}      {fg=MyTheme}
+\setbeamercolor{alerted text}   {fg=AlertColor}
+\setbeamercolor{itemize item}   {fg=Charcoal}
+\setbeamercolor{enumerate item} {fg=MyTheme}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Quote Slide Environment
+
+\newenvironment{quoteslide}[1][\unskip]{
+  \newcommand{\quotetext}[1]{\node[notice={(1,-0.5)}, text width=6.5cm] at (3.5,0){##1}; }
+  \begin{tikzpicture}[overlay,remember picture]
+  }
+{\node[] at (10,-1.5) {\includegraphics[width=3cm]{#1}};
+\end{tikzpicture}}

@@ -3,79 +3,12 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[12pt,presentation,notes]{beamer}
-%\documentclass[12pt,presentation]{beamer}
 
-\usetheme{default}
-\usecolortheme{default}
-
-%\useoutertheme{smoothbars}
-\useinnertheme{rounded}
-
-\setbeamertemplate{footline}{~\quad~\insertshorttitle~|~\insertshortauthor\hfill\insertsectionnumber.\insertsubsectionnumber~\insertsection\hfill\insertdate~\quad~
-\begin{tikzpicture}
-\draw node {\insertframenumber/\inserttotalframenumber};
-\draw [black,very thick,domain=0:360] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
-\draw [MyTheme,very thick,domain=0:(360*\insertframenumber)/(\inserttotalframenumber))] plot ({0.3*cos(\x)}, {0.3*sin(\x)});
-\end{tikzpicture}~\quad\quad\vspace{0.3cm}
-}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
-\setbeamertemplate{subsection in toc}{\quad\inserttocsectionnumber.\inserttocsubsectionnumber~\inserttocsubsection \\}
-
-\usepackage[T1]{fontenc}
-\usepackage[default]{sourcesanspro}
-\usepackage[utf8x]{inputenc}
-
-\usepackage{graphicx}
-
-\graphicspath{D:/LATEX/Reports@IIT/figures}
-
-\usepackage{xcolor,colortbl}
-
-\setbeamerfont{title}{series={\huge}}
-\setbeamerfont{frametitle}{series={\bfseries}}
-\setbeamerfont{block title}{series={\normalsize\bfseries}}
-\setbeamertemplate{frametitle}{\begin{centering}\smallskip\insertframetitle\par\smallskip\end{centering}}
-\setbeamertemplate{itemize items}{\tikz\node[draw=MyTheme, circle, very thick,fill=MyThemeLight,inner sep=0.08cm] {};}{}
-
-\usepackage{pgf,tikz}
-\usetikzlibrary{shapes.callouts}
-
-\tikzset{
-  level/.style   = { ultra thick, blue },
-  connect/.style = { dashed, red },
-  notice/.style  = { ultra thick, draw=MyTheme, rectangle callout, rounded corners, inner sep=1em,callout relative pointer={#1},fill=MyThemeLight },
-  label/.style   = { text width=2cm }
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define some colors:
-\definecolor{TuscanRed}    {HTML}{71283F}
-\definecolor{DarkFern}     {HTML}{407428}
-\definecolor{OceanBlue}    {HTML}{293F70}
-\definecolor{DarkCharcoal} {HTML}{4D4944}
-
-\colorlet{MyTheme}{DarkFern}
-%\colorlet{MyTheme}{TuscanRed}
-%\colorlet{MyTheme}{OceanBlue}
-\colorlet{MyThemeLight}{MyTheme!30!white}
-
-\colorlet{Charcoal}{DarkCharcoal!85!white}
-\colorlet{LightCharcoal}{Charcoal!50!white}
-\colorlet{AlertColor}{MyTheme}
-
-\setbeamercolor{title}          {fg=black}
-\setbeamercolor{frametitle}     {fg=black}
-\setbeamercolor{normal text}    {fg=black}
-\setbeamercolor{block title}    {fg=black,bg=MyTheme!70!white}
-\setbeamercolor{block body}     {fg=black,bg=MyThemeLight}
-\setbeamercolor{structure}      {fg=MyTheme}
-\setbeamercolor{alerted text}   {fg=AlertColor}
-\setbeamercolor{itemize item}   {fg=Charcoal}
-\setbeamercolor{enumerate item} {fg=MyTheme}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../beamer-template.tex}
 
 \title[Short Title]{Insert Title Here}
-\author[PHIL101]{\normalsize Philosophy 101}
+\subtitle{Philosophy 101}
+\author[]{Adam Edwards}
 \institute{\normalsize Heartland Community College}
 \date{\today}
 
@@ -91,7 +24,7 @@
 
 \begin{document}
 
-\usebackgroundtemplate{\tikz[overlay,remember picture]\node[opacity=0.3,at=(current page.center)] {\includegraphics[width=\paperwidth,height=\paperheight]{../bg/bg01}};}
+\usebackgroundtemplate{\tikz[overlay,remember picture]\node[opacity=0.3,at=(current page.center)] {\includegraphics[width=\paperwidth,height=\paperheight]{../images/blackboard}};}
 \begin{frame}[plain]\vspace{1cm}\titlepage\end{frame}
 \usebackgroundtemplate{}
 
@@ -104,24 +37,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Intro}
-\begin{frame}
-\frametitle{Arc}
-
-\insertframenumber/\inserttotalframenumber
-
-\end{frame}
-
-\subsection{Intro A}
-\subsection{Intro B}
-
 
 \begin{frame}
 \frametitle{Kant on the Good Will}
 
-\begin{tikzpicture}[overlay,remember picture]
- \node[notice={(1,-0.5)}, text width=6.5cm] at (3.5,0) {What makes a good will good? It isn't what it brings about, its usefulness in achieving some intended end. Rather, good will is good because of how it wills -- i.e. it is good in itself. Taken just in itself it is to be valued incomparably more highly than anything that could be brought about by it in the satisfaction of some preference -- or, if you like, the sum total of all preferences!};
- \node[] at (10,-1.5) {\includegraphics[width=3cm]{kant}};
-\end{tikzpicture}
+\begin{quoteslide}[kant]
+  \quotetext{What makes a good will good? It isn't what it brings about, its usefulness in achieving some intended end. Rather, good will is good because of how it wills -- i.e. it is good in itself. Taken just in itself it is to be valued incomparably more highly than anything that could be brought about by it in the satisfaction of some preference -- or, if you like, the sum total of all preferences!}
+\end{quoteslide}
 
 \end{frame}
 
